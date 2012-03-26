@@ -21,7 +21,13 @@ include_recipe "apache2"
 include_recipe "tftp::server"
 
 #search for any apt-cacher-ng caching proxies
-servers = search(:node, 'recipes:apt\:\:cacher-ng') || []
+servers = []
+if Chef::Config[:solo]
+  Chef::Log.warn("This recipe uses search. Chef Solo does not support search.")
+else
+  servers = search(:node, 'recipes:apt\:\:cacher-ng') || []
+end
+
 if servers.length > 0
   proxy = "d-i mirror/http/proxy string http://#{servers[0].ipaddress}:3142"
 else
