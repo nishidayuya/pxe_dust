@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default[:pxe_dust][:chefversion] = "0.10.8-2"
+default['pxe_dust']['chefversion'] = "0.10.8-2"
