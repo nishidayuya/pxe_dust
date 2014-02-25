@@ -29,7 +29,7 @@ end
 
 web_app 'pxe_dust' do
   cookbook 'apache2'
-  server_name node['hostname']
+  server_name node['pxe_dust']['server_name']
   server_aliases [node['fqdn']]
   directory_options ['Indexes', 'FollowSymLinks']
   docroot node['pxe_dust']['dir']
